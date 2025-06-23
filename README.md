@@ -504,6 +504,138 @@ element.dispatchEvent(event);
 
 ## Лекция №4
 
+Внутреннее устройство браузера
+Процессы браузера:
+Network Process - обработка сетевых запросов
+
+Renderer Process - рендеринг страницы (по одному на вкладку)
+
+GPU Process - обработка графики
+
+Plugin Process - управление плагинами
+
+Storage Process - работа с хранилищами данных
+
+Критические этапы рендеринга (Critical Rendering Path):
+Загрузка HTML
+
+Построение DOM (Document Object Model)
+
+Построение CSSOM (CSS Object Model)
+
+Формирование Render Tree
+
+Компоновка (Layout)
+
+Отрисовка (Paint)
+
+DOM и CSSOM
+DOM:
+HTML преобразуется в токены, затем в узлы (nodes)
+
+Формируется иерархическое дерево элементов
+
+Инкрементальное построение (может отображаться частично)
+
+CSSOM:
+Содержит все стили страницы
+
+Блокирует рендер до полной загрузки
+
+Не инкрементальный (нужно ждать полной загрузки)
+
+Архитектурные принципы
+Основные методологии:
+DRY (Don't Repeat Yourself) - избегание дублирования кода
+
+KISS (Keep It Simple Stupid) - простота решений
+
+SOLID - пять принципов ООП:
+
+Single Responsibility
+
+Open-Closed
+
+Liskov Substitution
+
+Interface Segregation
+
+Dependency Inversion
+
+Декомпозиция:
+Функциональная: разделение на модули с инкапсуляцией данных
+
+Компонентная: независимые, переиспользуемые компоненты
+
+Паттерны проектирования
+MVC (Model-View-Controller):
+Модель: бизнес-логика и данные
+
+Представление: отображение данных (HTML, CSS)
+
+Контроллер: связующее звено между моделью и представлением
+
+Роутинг:
+Соответствие между URL и View
+
+Использование History API для навигации в SPA:
+
+javascript
+window.history.pushState(state, title, url);
+window.history.replaceState(state, title, url);
+Архитектура CSS
+Проблемы традиционных подходов:
+Сильная связанность со структурой документа
+
+Конфликты имен классов
+
+Трудности поддержки и масштабирования
+
+Современные решения:
+CSS Modules: автоматическая генерация уникальных имен классов
+
+javascript
+import styles from './Button.module.css';
+<button className={styles.primary}>Click</button>
+CSS-in-JS: стили как JavaScript-объекты
+
+javascript
+const styles = {
+  button: {
+    backgroundColor: 'blue',
+    color: 'white'
+  }
+};
+OOCSS (Object-Oriented CSS):
+
+Разделение структуры и оформления
+
+Переиспользуемые компоненты
+
+Инструменты разработки
+NPM (Node Package Manager):
+Управление зависимостями проекта
+
+Инициализация проекта: npm init
+
+Установка пакетов: npm install <package>
+
+Файлы конфигурации:
+
+package.json - метаданные проекта
+
+package-lock.json - точные версии зависимостей
+
+Подключение библиотек:
+Через CDN:
+
+html
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+Через npm:
+
+javascript
+import { Component } from 'bootstrap';
+
 ## Лекция №5
 
 ## Лекция №6
