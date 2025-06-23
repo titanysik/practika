@@ -638,6 +638,170 @@ import { Component } from 'bootstrap';
 
 ## Лекция №5
 
+Основы клиент-серверного взаимодействия
+DNS и TCP соединение:
+Браузер получает IP-адрес сервера через DNS (Domain Name System)
+
+Устанавливается TCP соединение через "тройное рукопожатие":
+
+Клиент → Сервер: SYN
+
+Сервер → Клиент: SYN-ACK
+
+Клиент → Сервер: ACK
+
+HTTP запросы:
+Браузер отправляет HTTP-запрос
+
+Сервер обрабатывает запрос (бизнес-логика, рендеринг)
+
+Сервер отправляет ответ (HTML, JSON, файлы)
+
+Браузер отображает полученный контент
+
+Архитектурные модели
+Эволюция веб-приложений:
+Статические страницы: только HTML/CSS
+
+SSR (Server-Side Rendering): динамическая генерация HTML на сервере
+
+Веб-сервисы:
+
+Frontend: SPA (Single Page Application)
+
+Backend: REST API
+
+REST принципы:
+Stateless (каждый запрос содержит всю необходимую информацию)
+
+Единообразие интерфейса
+
+Кэшируемость
+
+Клиент-серверное разделение
+
+Node.js основы
+Особенности Node.js:
+Среда выполнения JavaScript на движке V8
+
+Асинхронная, событийно-ориентированная архитектура
+
+Однопоточная модель с Event Loop
+
+Богатая стандартная библиотека (http, fs, path и др.)
+
+Пример простого сервера:
+javascript
+const http = require('http');
+const server = http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end('Hello World!');
+});
+server.listen(8000, () => console.log('Server running'));
+TypeScript vs JavaScript
+Преимущества TypeScript:
+Статическая типизация
+
+Интерфейсы и декораторы
+
+Поддержка ООП
+
+Лучшая поддержка IDE
+
+Совместимость с JavaScript
+
+Пример типизации:
+typescript
+interface Person {
+  name: string;
+  age: number;
+}
+
+function greet(person: Person): string {
+  return `Hello, ${person.name}`;
+}
+Nest.js - фреймворк для Node.js
+Особенности Nest.js:
+Архитектура, вдохновленная Angular
+
+Встроенная поддержка TypeScript
+
+Dependency Injection
+
+Модульная структура
+
+Готовые решения для:
+
+Валидации
+
+Аутентификации
+
+Работы с базами данных
+
+Основные компоненты:
+Контроллеры - обработка HTTP запросов
+
+typescript
+@Controller('stocks')
+export class StocksController {
+  @Get()
+  findAll() { return this.stocksService.findAll(); }
+}
+Сервисы - бизнес-логика
+
+typescript
+@Injectable()
+export class StocksService {
+  findAll() { return this.stocks; }
+}
+Модули - организация кода
+
+typescript
+@Module({
+  controllers: [StocksController],
+  providers: [StocksService],
+})
+export class StocksModule {}
+Практическая работа с API
+CRUD операции:
+GET /stocks - получить все записи
+
+POST /stocks - создать новую запись
+
+GET /stocks/:id - получить запись по ID
+
+PATCH /stocks/:id - обновить запись
+
+DELETE /stocks/:id - удалить запись
+
+Тестирование с Postman:
+Создание запроса (метод, URL, headers)
+
+Отправка тела запроса (JSON)
+
+Анализ ответа (статус код, тело ответа)
+
+Работа с данными
+Хранение данных:
+В памяти (массивы, объекты)
+
+В файлах (JSON)
+
+В базах данных (MongoDB, PostgreSQL)
+
+Пример сервиса для работы с данными:
+typescript
+@Injectable()
+export class StocksService {
+  private stocks: Stock[] = [];
+
+  create(stock: CreateStockDto) {
+    const newStock = { ...stock, id: this.stocks.length + 1 };
+    this.stocks.push(newStock);
+    return newStock;
+  }
+}
+
 ## Лекция №6
 
 ## Лекция №7
