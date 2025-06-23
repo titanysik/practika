@@ -953,3 +953,146 @@ fetch('https://api.example.com/data', {
 .then(data => console.log(data));
 
 ## Лекция №7
+
+Основы асинхронности в JavaScript
+Проблема синхронного кода:
+JavaScript выполняется однопоточно
+
+Долгие операции (загрузка скриптов, запросы к серверу) блокируют выполнение кода
+
+Пример:
+
+javascript
+loadScript('script.js'); // Долгая операция
+alert('Скрипт загружен!'); // Выполнится ДО загрузки
+Решение через колбэки:
+javascript
+function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+  script.onload = () => callback(script);
+  document.head.append(script);
+}
+
+loadScript('script.js', (script) => {
+  alert(`Загружен: ${script.src}`);
+});
+Event Loop и очередь задач
+Принцип работы:
+Call Stack - стек вызовов синхронных функций
+
+Macrotask Queue - очередь макрозадач (setTimeout, setInterval)
+
+Microtask Queue - очередь микрозадач (Promise, MutationObserver)
+
+Event Loop - управляет порядком выполнения
+
+Порядок выполнения:
+Синхронный код
+
+Микрозадачи (полностью очищается очередь)
+
+Макрозадачи (по одной за цикл)
+
+Рендеринг (при необходимости)
+
+Проблемы колбэков и Promise
+Callback Hell:
+javascript
+loadScript('script1.js', () => {
+  loadScript('script2.js', () => {
+    loadScript('script3.js', () => {
+      // Глубокий уровень вложенности
+    });
+  });
+});
+Решение через Promise:
+javascript
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    let script = document.createElement('script');
+    script.src = src;
+    script.onload = () => resolve(script);
+    script.onerror = () => reject(new Error('Ошибка загрузки'));
+    document.head.append(script);
+  });
+}
+
+loadScript('script.js')
+  .then(script => console.log('Загружен:', script.src))
+  .catch(err => console.error('Ошибка:', err));
+Современные подходы
+Async/Await:
+javascript
+async function loadAllScripts() {
+  try {
+    const script1 = await loadScript('script1.js');
+    const script2 = await loadScript('script2.js');
+    console.log('Все скрипты загружены');
+  } catch (err) {
+    console.error('Ошибка:', err);
+  }
+}
+Параллельное выполнение:
+javascript
+Promise.all([
+  loadScript('script1.js'),
+  loadScript('script2.js'),
+  loadScript('script3.js')
+]).then((scripts) => {
+  console.log('Все скрипты загружены');
+});
+Fetch API
+Основы работы:
+javascript
+async function fetchData() {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    if (!response.ok) throw new Error('Ошибка сети');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Ошибка:', error);
+  }
+}
+Настройки запроса:
+javascript
+fetch('https://api.example.com/data', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ key: 'value' })
+});
+Совместимость и транспиляция
+Babel:
+Транспилирует современный JS в старый формат
+
+Конфигурация в .babelrc:
+
+json
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "targets": {
+        "edge": "17",
+        "firefox": "60",
+        "chrome": "67"
+      }
+    }]
+  ]
+}
+Сборщики (Vite, Webpack):
+Объединяют множество файлов в один bundle
+
+Оптимизируют код для production
+
+Пример Vite конфига:
+
+javascript
+export default {
+  build: {
+    outDir: './public',
+    emptyOutDir: true,
+  }
+};
