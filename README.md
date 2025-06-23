@@ -804,4 +804,152 @@ export class StocksService {
 
 ## Лекция №6
 
+Основы AJAX
+Что такое AJAX:
+Асинхронный JavaScript и XML (Asynchronous JavaScript and XML)
+
+Технология для обмена данными с сервером без перезагрузки страницы
+
+Основана на объекте XMLHttpRequest (XHR)
+
+Поддерживает различные форматы данных: XML, JSON, HTML, текстовые файлы
+
+Основные принципы работы:
+Создание XHR-объекта
+
+Настройка запроса (метод, URL)
+
+Отправка запроса
+
+Обработка ответа
+
+javascript
+const xhr = new XMLHttpRequest();
+xhr.open('GET', '/api/data');
+xhr.send();
+
+xhr.onload = function() {
+  if (xhr.status === 200) {
+    console.log(xhr.response);
+  }
+};
+Форматы данных
+JSON (JavaScript Object Notation):
+Легковесный формат обмена данными
+
+Поддерживается всеми современными языками
+
+Пример:
+
+json
+{
+  "name": "John",
+  "age": 30,
+  "courses": ["HTML", "CSS", "JS"]
+}
+Blob и FormData:
+Blob - для работы с бинарными данными
+
+FormData - для отправки форм и файлов
+
+XMLHttpRequest
+Методы и свойства:
+open(method, url) - инициализация запроса
+
+send(body) - отправка запроса
+
+responseType - тип ожидаемого ответа (text, json, blob и др.)
+
+status - HTTP-код ответа
+
+response - тело ответа
+
+Состояния запроса (readyState):
+0 (UNSET) - инициализация
+
+1 (OPENED) - вызван open()
+
+2 (HEADERS_RECEIVED) - получены заголовки
+
+3 (LOADING) - загрузка данных
+
+4 (DONE) - запрос завершен
+
+Безопасность: Same Origin Policy и CORS
+Same Origin Policy (SOP):
+Ограничивает кросс-доменные запросы
+
+URL считаются одного источника, если совпадают:
+
+Протокол (http/https)
+
+Домен (example.com)
+
+Порт (80, 443 и др.)
+
+CORS (Cross-Origin Resource Sharing):
+Механизм для безопасного кросс-доменного взаимодействия
+
+Сервер должен включать заголовки:
+
+Access-Control-Allow-Origin
+
+Access-Control-Allow-Methods
+
+Access-Control-Allow-Headers
+
+Типы запросов:
+Простые (GET, POST, HEAD с ограниченными заголовками)
+
+Предварительные (preflight) - для сложных запросов (OPTIONS)
+
+Хранение данных на клиенте
+Варианты хранения:
+Cookies:
+
+Маленький размер (до 4KB)
+
+Отправляются с каждым запросом
+
+Параметры: Expires, Domain, Path, Secure, HttpOnly
+
+Web Storage:
+
+localStorage - постоянное хранение
+
+sessionStorage - хранение на время сессии
+
+До 5MB данных
+
+IndexedDB:
+
+Клиентская NoSQL база данных
+
+Подходит для сложных структур данных
+
+Практические примеры
+Отправка POST-запроса:
+javascript
+const xhr = new XMLHttpRequest();
+xhr.open('POST', '/api/create');
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.send(JSON.stringify({ name: 'John' }));
+
+xhr.onload = function() {
+  if (xhr.status === 201) {
+    console.log('Created:', xhr.response);
+  }
+};
+Работа с CORS:
+javascript
+fetch('https://api.example.com/data', {
+  method: 'GET',
+  mode: 'cors',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+.then(response => response.json())
+.then(data => console.log(data));
+
 ## Лекция №7
