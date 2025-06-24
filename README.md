@@ -395,26 +395,23 @@ class CoffeeMachine {
 
 Rest-оператор позволяет собирать неограниченное количество аргументов функции в массив:
 
+```javascript
 function sumAll(...args) {
-
   let sum = 0;
-  
   for (let arg of args) sum += arg;
-  
-  return sum;
-  
+  return sum; 
 }
+```
 
 Spread-оператор разворачивает массив в список аргументов:
 
+```javascript
 const arr1 = [0, -2, 1, 5];
-
 const arr2 = [100, 200, 300, -322];
-
 console.log(Math.max(...arr1, ...arr2));
+```
 
-Замыкания
-Функция запоминает свое лексическое окружение:
+Замыкания: Функция запоминает свое лексическое окружение:
 
 ```javascript
 function makeWorker() {
@@ -426,8 +423,7 @@ let work = makeWorker();
 work(); // "Pete"
 ```
 
-Лексическое окружение
-Каждая функция, блок кода и скрипт имеют связанный объект LexicalEnvironment, состоящий из:
+Лексическое окружение: Каждая функция, блок кода и скрипт имеют связанный объект LexicalEnvironment, состоящий из:
 
 Environment Record - хранилище локальных переменных
 
@@ -435,15 +431,15 @@ Environment Record - хранилище локальных переменных
 
 Особенности:
 
-Function Declaration инициализируются сразу при создании окружения
-
-var не имеет блочной области видимости, поднимается в начало функции
-
+Function Declaration инициализируются сразу при создании окружения;
+var не имеет блочной области видимости, поднимается в начало функции;
 IIFE (Immediately-Invoked Function Expression) создает изолированное окружение
 
-Декораторы и контекст вызова
-Декоратор с кешированием
-javascript
+### Декораторы и контекст вызова
+
+Декоратор с кешированием:
+
+```javascript
 function cachingDecorator(func) {
   let cache = new Map();
   return function(x) {
@@ -453,22 +449,30 @@ function cachingDecorator(func) {
     return result;
   };
 }
-Привязка контекста
+```
+
+Привязка контекста:
+
 func.call(context, ...args) - вызывает функцию с указанным контекстом
 
 func.apply(context, args) - аналогично, но аргументы передаются массивом
 
 func.bind(context) - создает новую функцию с привязанным контекстом
 
-Прототипы и наследование
-Прототипное наследование
-javascript
+### Прототипы и наследование
+
+Прототипное наследование:
+
+```javascript
 let animal = { eats: true };
 let rabbit = { jumps: true };
 rabbit.__proto__ = animal; 
 alert(rabbit.eats); // true
+```
+
 Классы и наследование
-javascript
+
+```javascript
 class Animal {
   constructor(name) {
     this.name = name;
@@ -479,27 +483,36 @@ class Animal {
 class Rabbit extends Animal {
   hide() { alert(`${this.name} прячется`); }
 }
-Модули (ES Modules)
-Экспорт и импорт
-javascript
+```
+
+### Модули (ES Modules)
+
+Экспорт и импорт:
+
+```javascript
 // say.js
 export function sayHi(user) { alert(`Hello, ${user}!`); }
 
 // main.js
 import {sayHi} from './say.js';
 sayHi('John');
+```
+
 Особенности модулей:
-Каждый модуль выполняется только один раз
 
-Имеют свою область видимости
+Каждый модуль выполняется только один раз;
 
-Поддерживают экспорт по умолчанию (export default)
+Имеют свою область видимости;
 
-Позволяют реэкспорт (export {x} from './module')
+Поддерживают экспорт по умолчанию (export default);
 
-Обработка ошибок
-Try...catch
-javascript
+Позволяют реэкспорт (export {x} from './module');
+
+### Обработка ошибок
+
+Try...catch:
+
+```javascript
 try {
   // код
 } catch(err) {
@@ -509,44 +522,59 @@ try {
 } finally {
   // выполнится в любом случае
 }
-Пользовательские ошибки
-javascript
+```
+
+Пользовательские ошибки:
+
+```javascript
 class ValidationError extends Error {
   constructor(message) {
     super(message);
     this.name = "ValidationError";
   }
 }
-Регулярные выражения
-Создание и использование
-javascript
+```
+
+### Регулярные выражения
+
+Создание и использование:
+
+```javascript
 let regexp = /шаблон/gi;
 let str = "Любо, братцы, любо!";
 let result = str.match(regexp);
 str.replace(regexp, "замена");
 regexp.test(str); // true/false
-События
-Обработчики событий
-javascript
+```
+
+### События
+
+Обработчики событий:
+
+```javascript
 element.onclick = function(event) {
   alert(`Клик на ${event.target.tagName}`);
 };
 
 element.addEventListener("click", handler);
 element.removeEventListener("click", handler);
-Всплытие и погружение
+```
+
+### Всплытие и погружение
 События сначала идут вниз (погружение), затем вверх (всплытие). Можно:
 
-Остановить всплытие: event.stopPropagation()
+Остановить всплытие: event.stopPropagation();
 
-Отменить действие по умолчанию: event.preventDefault()
+Отменить действие по умолчанию: event.preventDefault();
 
-Настроить обработку на фазе погружения: addEventListener(..., true)
+Настроить обработку на фазе погружения: addEventListener(..., true);
 
-Пользовательские события
-javascript
+Пользовательские события:
+
+```javascript
 let event = new Event("click");
 element.dispatchEvent(event);
+```
 
 ## Лекция №4
 
