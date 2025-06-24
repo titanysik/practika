@@ -139,7 +139,8 @@ text-align — выравнивание текста.
 
 ## Лекция №2
 
-Переменные
+### Основы JavaScript
+
 Объявление переменных возможно с помощью ключевых слов:
 
 let — современный способ объявления переменных.
@@ -150,34 +151,30 @@ const — объявляет константу, значение которой
 
 Пример:
 
-javascript
 let message = "hello";
+
 message = 123456; // Ошибки не будет
-Типизация и преобразование типов
-JavaScript динамически типизирован. Преобразование типов может происходить неявно:
 
-javascript
+JavaScript строго не типизированный язык. Преобразование типов может происходить неявно:
+
 "" == 0;      // true
+
 "0" == 0;     // true
+
 "" == "0";    // false
+
 "0" == false; // true
-Математические операции
-Основные операции:
 
-Сложение (+), вычитание (-), умножение (*), деление (/).
-
-Остаток от деления (%).
-
-Инкремент (++), декремент (--).
+Основные математические операции: Сложение (+), вычитание (-), умножение (*), деление (/), Остаток от деления (%), Инкремент (++), декремент (--).
 
 Пример:
 
-javascript
 const a = 3 + 2; // 5
 a += 2;          // 7
 a++;             // 8
-Операторы сравнения
-Сравнение: >, <, >=, <=.
+
+
+Операторы сравнения: >, <, >=, <=.
 
 Равенство: == (нестрогое), === (строгое).
 
@@ -185,91 +182,122 @@ a++;             // 8
 
 Пример:
 
-javascript
 3 > 2;        // true
+
 false == "";  // true
+
 false !== true; // true
-Условные операторы
+
+### Условные операторы: 
+
 if...else:
 
-javascript
 if (year == 2007) {
+
   alert('Верните меня туда');
+  
 } else {
+
   alert('Эх...');
+  
 }
+
 Тернарный оператор:
 
-javascript
 const year = (условие) ? 2007 : 2023;
-Циклы
-while:
 
-javascript
+Цикл while:
+
 while (condition) {
+
   // тело цикла
+  
 }
+
 do...while:
 
-javascript
 do {
+
   // тело цикла
+  
 } while (condition);
+
 for:
 
-javascript
 for (начало; условие; шаг) {
+
   // тело цикла
+  
 }
-Функции
+
+### Функции
+
 Function Declaration:
 
-javascript
 function sum(a, b) {
+
   return a + b;
+  
 }
+
 Function Expression:
 
-javascript
 let sum = function(a, b) {
+
   return a + b;
+  
 };
+
 Стрелочные функции:
 
-javascript
 const sum = (a, b) => a + b;
+
 const sum2 = (a, b) => {
+
   let result = a + b;
+  
   return result;
+  
 };
-Объекты
+
+### Объекты
+
 Объекты — это структуры "ключ-значение".
 
 Создание:
 
-javascript
 let user = {}; // литерал объекта
+
 let user = new Object(); // конструктор
+
 Доступ к свойствам:
 
-javascript
 user.name;     // через точку
+
 user["age"];   // через квадратные скобки
+
 Методы объектов:
 
-javascript
 let user = {
+
   name: "John",
+  
   sayHi() {
+  
     alert(this.name);
+    
   }
+  
 };
-Массивы
+
+### Массивы
+
 Создание:
 
-javascript
 let arr = [];
+
 let fruits = ["Яблоко", "Апельсин"];
+
 Методы:
 
 push/pop — добавление/удаление с конца.
@@ -284,70 +312,96 @@ map/filter/reduce — преобразование массива.
 
 Пример:
 
-javascript
 let lengths = ["Бильбо", "Гэндальф"].map(item => item.length); // [6, 8]
-Деструктуризация
+
+### Деструктуризация
+
 Массивы:
 
-javascript
 let [firstName, surname] = ["Ilya", "Kantor"];
+
 Объекты:
 
-javascript
 let {title, width, height} = {title: "Menu", width: 100, height: 200};
-Коллекции: Map и Set
-Map — коллекция ключ-значение:
 
-javascript
+### Коллекции: Map и Set
+
+**Map** — коллекция ключ-значение:
+
 let map = new Map();
-map.set("1", "str1");
-map.get("1"); // "str1"
-Set — коллекция уникальных значений:
 
-javascript
+map.set("1", "str1");
+
+map.get("1"); // "str1"
+
+**Set** — коллекция уникальных значений:
+
 let set = new Set();
+
 set.add("John");
+
 set.add("Pete");
-JSON
+
+### JSON
+
 JSON.stringify — преобразование объекта в строку JSON.
 
 JSON.parse — преобразование строки JSON в объект.
 
 Пример:
 
-javascript
 let student = {name: "John", age: 30};
+
 let json = JSON.stringify(student);
+
 let parsed = JSON.parse(json);
-Классы
+
+### Классы
+
 Создание класса:
 
-javascript
 class User {
+
   constructor(name) {
+  
     this.name = name;
+    
   }
+  
   sayHi() {
+  
     alert(this.name);
+    
   }
+  
 }
+
 let user = new User("Иван");
+
 user.sayHi(); // Иван
+
 Наследование:
 
-javascript
 class Animal {
+
   run() { alert("Бежит"); }
+  
 }
+
 class Rabbit extends Animal {
+
   hide() { alert("Прячется"); }
+  
 }
+
 Приватные свойства:
 
-javascript
 class CoffeeMachine {
+
   #waterLimit = 200;
+  
   #checkWater() { ... }
+  
 }
 
 ## Лекция №3
