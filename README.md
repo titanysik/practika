@@ -922,8 +922,10 @@ export class StocksService {
 
 ## Лекция №6
 
-Основы AJAX
-Что такое AJAX:
+### Основы AJAX
+
+**AJAX:**
+
 Асинхронный JavaScript и XML (Asynchronous JavaScript and XML)
 
 Технология для обмена данными с сервером без перезагрузки страницы
@@ -932,7 +934,8 @@ export class StocksService {
 
 Поддерживает различные форматы данных: XML, JSON, HTML, текстовые файлы
 
-Основные принципы работы:
+**Основные принципы работы:**
+
 Создание XHR-объекта
 
 Настройка запроса (метод, URL)
@@ -941,7 +944,7 @@ export class StocksService {
 
 Обработка ответа
 
-javascript
+```javascript
 const xhr = new XMLHttpRequest();
 xhr.open('GET', '/api/data');
 xhr.send();
@@ -951,27 +954,36 @@ xhr.onload = function() {
     console.log(xhr.response);
   }
 };
-Форматы данных
+```
+
+### Форматы данных
+
 JSON (JavaScript Object Notation):
+
 Легковесный формат обмена данными
 
 Поддерживается всеми современными языками
 
 Пример:
 
-json
+```json
 {
   "name": "John",
   "age": 30,
   "courses": ["HTML", "CSS", "JS"]
 }
-Blob и FormData:
+```
+
+**Blob и FormData:**
+
 Blob - для работы с бинарными данными
 
 FormData - для отправки форм и файлов
 
-XMLHttpRequest
-Методы и свойства:
+### XMLHttpRequest
+
+**Методы и свойства:**
+
 open(method, url) - инициализация запроса
 
 send(body) - отправка запроса
@@ -982,7 +994,8 @@ status - HTTP-код ответа
 
 response - тело ответа
 
-Состояния запроса (readyState):
+**Состояния запроса (readyState):**
+
 0 (UNSET) - инициализация
 
 1 (OPENED) - вызван open()
@@ -993,19 +1006,16 @@ response - тело ответа
 
 4 (DONE) - запрос завершен
 
-Безопасность: Same Origin Policy и CORS
-Same Origin Policy (SOP):
+### Безопасность: Same Origin Policy и CORS
+
+**Same Origin Policy (SOP):**
+
 Ограничивает кросс-доменные запросы
 
-URL считаются одного источника, если совпадают:
+URL считаются одного источника, если совпадают: Протокол (http/https), Домен (example.com), Порт (80, 443 и др.)
 
-Протокол (http/https)
+### CORS (Cross-Origin Resource Sharing):
 
-Домен (example.com)
-
-Порт (80, 443 и др.)
-
-CORS (Cross-Origin Resource Sharing):
 Механизм для безопасного кросс-доменного взаимодействия
 
 Сервер должен включать заголовки:
@@ -1016,14 +1026,17 @@ Access-Control-Allow-Methods
 
 Access-Control-Allow-Headers
 
-Типы запросов:
+**Типы запросов:**
+
 Простые (GET, POST, HEAD с ограниченными заголовками)
 
 Предварительные (preflight) - для сложных запросов (OPTIONS)
 
-Хранение данных на клиенте
-Варианты хранения:
-Cookies:
+### Хранение данных на клиенте
+
+**Варианты хранения:**
+
+*Cookies:*
 
 Маленький размер (до 4KB)
 
@@ -1031,7 +1044,7 @@ Cookies:
 
 Параметры: Expires, Domain, Path, Secure, HttpOnly
 
-Web Storage:
+*Web Storage:*
 
 localStorage - постоянное хранение
 
@@ -1039,15 +1052,17 @@ sessionStorage - хранение на время сессии
 
 До 5MB данных
 
-IndexedDB:
+*IndexedDB:*
 
 Клиентская NoSQL база данных
 
 Подходит для сложных структур данных
 
-Практические примеры
+### Практические примеры
+
 Отправка POST-запроса:
-javascript
+
+```javascript
 const xhr = new XMLHttpRequest();
 xhr.open('POST', '/api/create');
 xhr.setRequestHeader('Content-Type', 'application/json');
@@ -1058,8 +1073,11 @@ xhr.onload = function() {
     console.log('Created:', xhr.response);
   }
 };
+```
+
 Работа с CORS:
-javascript
+
+```javascript
 fetch('https://api.example.com/data', {
   method: 'GET',
   mode: 'cors',
@@ -1069,6 +1087,7 @@ fetch('https://api.example.com/data', {
 })
 .then(response => response.json())
 .then(data => console.log(data));
+```
 
 ## Лекция №7
 
