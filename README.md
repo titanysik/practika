@@ -192,15 +192,13 @@ false !== true; // true
 
 if...else:
 
+```javascript
 if (year == 2007) {
-
   alert('Верните меня туда');
-  
 } else {
-
   alert('Эх...');
-  
 }
+```
 
 Тернарный оператор:
 
@@ -208,57 +206,55 @@ const year = (условие) ? 2007 : 2023;
 
 Цикл while:
 
+```javascript
 while (condition) {
-
   // тело цикла
-  
 }
+```
 
 do...while:
 
+```javascript
 do {
-
   // тело цикла
-  
 } while (condition);
+```
 
 for:
 
+```javascript
 for (начало; условие; шаг) {
-
   // тело цикла
-  
 }
+```
 
 ### Функции
 
 Function Declaration:
 
+```javascript
 function sum(a, b) {
-
   return a + b;
-  
 }
+```
 
 Function Expression:
 
+```javascript
 let sum = function(a, b) {
-
   return a + b;
-  
 };
+```
 
 Стрелочные функции:
 
+```javascript
 const sum = (a, b) => a + b;
-
 const sum2 = (a, b) => {
-
   let result = a + b;
-  
   return result;
-  
 };
+```
 
 ### Объекты
 
@@ -266,37 +262,37 @@ const sum2 = (a, b) => {
 
 Создание:
 
+```javascript
 let user = {}; // литерал объекта
-
 let user = new Object(); // конструктор
+```
 
 Доступ к свойствам:
 
+```javascript
 user.name;     // через точку
-
 user["age"];   // через квадратные скобки
+```
 
 Методы объектов:
 
+```javascript
 let user = {
-
   name: "John",
-  
   sayHi() {
-  
     alert(this.name);
-    
-  }
-  
+  }  
 };
+```javascript
 
 ### Массивы
 
 Создание:
 
+```javascript
 let arr = [];
-
 let fruits = ["Яблоко", "Апельсин"];
+```
 
 Методы:
 
@@ -328,19 +324,19 @@ let {title, width, height} = {title: "Menu", width: 100, height: 200};
 
 **Map** — коллекция ключ-значение:
 
+```javascript
 let map = new Map();
-
 map.set("1", "str1");
-
 map.get("1"); // "str1"
+```
 
 **Set** — коллекция уникальных значений:
 
+```javascript
 let set = new Set();
-
 set.add("John");
-
 set.add("Pete");
+```
 
 ### JSON
 
@@ -350,83 +346,77 @@ JSON.parse — преобразование строки JSON в объект.
 
 Пример:
 
+```javascript
 let student = {name: "John", age: 30};
-
 let json = JSON.stringify(student);
-
 let parsed = JSON.parse(json);
+```
 
 ### Классы
 
 Создание класса:
 
+```javascript
 class User {
-
   constructor(name) {
-  
-    this.name = name;
-    
-  }
-  
-  sayHi() {
-  
-    alert(this.name);
-    
-  }
-  
+    this.name = name;  
+  }  
+  sayHi() { 
+    alert(this.name);    
+  }  
 }
-
 let user = new User("Иван");
-
 user.sayHi(); // Иван
+```
 
 Наследование:
 
+```javascript
 class Animal {
-
   run() { alert("Бежит"); }
-  
 }
-
 class Rabbit extends Animal {
-
-  hide() { alert("Прячется"); }
-  
+  hide() { alert("Прячется"); } 
 }
+```
 
 Приватные свойства:
 
+```javascript
 class CoffeeMachine {
-
-  #waterLimit = 200;
-  
-  #checkWater() { ... }
-  
+  #waterLimit = 200; 
+  #checkWater() { ... } 
 }
+```
 
 ## Лекция №3
 
-Продвинутая работа с функциями
-Rest-оператор
-Позволяет собирать неограниченное количество аргументов функции в массив:
+### Продвинутая работа с функциями
 
-javascript
+Rest-оператор позволяет собирать неограниченное количество аргументов функции в массив:
+
 function sumAll(...args) {
-  let sum = 0;
-  for (let arg of args) sum += arg;
-  return sum;
-}
-Spread-оператор
-Разворачивает массив в список аргументов:
 
-javascript
+  let sum = 0;
+  
+  for (let arg of args) sum += arg;
+  
+  return sum;
+  
+}
+
+Spread-оператор разворачивает массив в список аргументов:
+
 const arr1 = [0, -2, 1, 5];
+
 const arr2 = [100, 200, 300, -322];
+
 console.log(Math.max(...arr1, ...arr2));
+
 Замыкания
 Функция запоминает свое лексическое окружение:
 
-javascript
+```javascript
 function makeWorker() {
   let name = "Pete";
   return function() { alert(name); };
@@ -434,6 +424,8 @@ function makeWorker() {
 let name = "John";
 let work = makeWorker();
 work(); // "Pete"
+```
+
 Лексическое окружение
 Каждая функция, блок кода и скрипт имеют связанный объект LexicalEnvironment, состоящий из:
 
